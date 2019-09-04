@@ -8,14 +8,20 @@
 
     <AutoCompleteTextView
         android:id="@+id/fishname"
-        android:layout_width="252dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="192dp"
+        android:layout_width="279dp"
+        android:layout_height="47dp"
         android:background="@drawable/edit_text_border"
-        android:hint="Fish Name"
+        android:completionHint="Enter Fish"
+        android:completionThreshold="1"
+        android:hint="Enter Fish Item for Search"
+        android:padding="10dp"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/submit"
@@ -49,16 +55,16 @@
         android:id="@+id/rate"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="292dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
+        android:padding="10dp"
         android:hint="Rate per Kg"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.397" />
 
     <TextView
         android:id="@+id/textView"

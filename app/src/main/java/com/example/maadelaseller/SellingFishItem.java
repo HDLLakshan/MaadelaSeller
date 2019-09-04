@@ -33,7 +33,7 @@ public class SellingFishItem extends Activity {
     private String TimeShopOpend;
     private DailySelling dailySelling;
     DatabaseReference dbRef;
-
+    AutoCompleteTextView et;
     private void clearControls(){
         Fishname.setText("");
         ratekg.setText("");
@@ -46,9 +46,9 @@ public class SellingFishItem extends Activity {
         requestWindowFeature( Window.FEATURE_NO_TITLE );
         setContentView( R.layout.activity_selling_fish_item );
 
-        //   AutoCompleteTextView et = findViewById( R.id.fishname );
-        //   ArrayAdapter<String> adapter = new ArrayAdapter<String>( this, android.R.layout.activity_list_item, Fish );
-        //    et.setAdapter( adapter );
+        et = findViewById( R.id.fishname );
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>( this,android.R.layout.simple_list_item_1,Fish );
+        et.setAdapter( adapter );
 
 
         Date c = Calendar.getInstance().getTime();
@@ -59,7 +59,7 @@ public class SellingFishItem extends Activity {
         Fishname = (EditText)findViewById( R.id.fishname );
         ratekg = (EditText)findViewById( R.id.rate );
         dailySelling = new DailySelling();
-        shopname = "FreshFish1";
+        shopname = "FreshFish";
 
     }
 
