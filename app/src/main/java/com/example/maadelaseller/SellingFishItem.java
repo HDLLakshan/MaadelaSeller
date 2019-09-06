@@ -82,7 +82,10 @@ public class SellingFishItem extends Activity {
                 dailySelling.setTime(TimeShopOpend);
 
                 //dbRef.push().setValue(dailySelling);
-                dbRef.child(dailySelling.getFishname()).setValue(dailySelling);
+          DatabaseReference  newref     = dbRef.push();
+                      String pushid = newref.getKey();
+                      dailySelling.setId( pushid );
+                      newref.setValue( dailySelling );
                 Toast.makeText(getApplicationContext(), " data saved Sussessfully ", Toast.LENGTH_SHORT).show();
                 clearControls();
             }

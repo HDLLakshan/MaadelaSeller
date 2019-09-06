@@ -6,7 +6,15 @@ public class DailySelling {
     private String time;
     private String Fishname;
     private double rate;
+    private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public DailySelling() {
     }
