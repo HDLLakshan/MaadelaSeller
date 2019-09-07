@@ -6,24 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MyShop">
 
-    <Button style="@style/Widget.AppCompat.Button.Colored"
+    <Button
         android:id="@+id/button"
-        android:theme="@style/AppTheme.Button"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="174dp"
         android:layout_height="57dp"
-        android:layout_marginEnd="116dp"
+        android:onClick="deletemyshop"
         android:text="Close Shop"
+        android:theme="@style/AppTheme.Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.91" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="199dp"
-        android:layout_height="57dp"
+        android:layout_width="159dp"
+        android:layout_height="52dp"
         android:layout_marginTop="48dp"
         android:text="My Shop"
         android:textSize="36sp"
@@ -41,5 +41,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/notibtn"
+        android:layout_width="48dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:onClick="gonotification"
+        android:src="@android:drawable/ic_notification_overlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

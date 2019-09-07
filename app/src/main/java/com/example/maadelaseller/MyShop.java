@@ -174,6 +174,29 @@ public class MyShop extends Activity {
         });
     }
 
+    public void gonotification(View view){
+        Intent intent = new Intent(MyShop.this,RequestNotification.class );
+        startActivity( intent );
+    }
+
+    public void deletemyshop(View view){
+        DatabaseReference delref = FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
+        delref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    dbref=FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
+                    dbref.removeValue();
+                    Toast.makeText(getApplicationContext(), "Shop Close Sucessfully",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
 
 }

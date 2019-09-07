@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                      //   Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                        if(dataSnapshot.hasChild("FreshFish")) {
+                        if(dataSnapshot.hasChild("FreshFis")) {
                             Intent intent = new Intent( MainActivity.this, MyShop.class );
                             startActivity( intent );
                             finish();

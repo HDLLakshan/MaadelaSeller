@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyShop"></activity>
+        <activity android:name=".RequestNotification"></activity>
+        <activity android:name=".MyShop" />
         <activity android:name=".SellingFishItem" />
         <activity android:name=".MainActivity">
             <intent-filter>

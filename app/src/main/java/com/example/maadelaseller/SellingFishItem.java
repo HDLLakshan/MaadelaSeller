@@ -34,11 +34,12 @@ public class SellingFishItem extends Activity {
     private DailySelling dailySelling;
     DatabaseReference dbRef;
     AutoCompleteTextView et;
+
     private void clearControls(){
         Fishname.setText("");
         ratekg.setText("");
-
     }
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
