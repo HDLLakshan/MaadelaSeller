@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -46,8 +47,11 @@ public class RequestNotification extends Activity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         DateShopOpend = df.format(c);
-        shopname = "FreshFish";
-         requestsList = new ArrayList<>(  );
+
+        SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
+        shopname = preferences.getString( "username","" );
+
+        requestsList = new ArrayList<>(  );
         listViewRequest = (ListView)findViewById( R.id.rlist );
         dbref = FirebaseDatabase.getInstance().getReference("Request").child(DateShopOpend);
 
@@ -86,34 +90,35 @@ public class RequestNotification extends Activity {
 
     public void ConfirmBox(int i){
         final int j = i;
+       if(requestsList.get( i ).getStatus().equals( "Pending" )) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+           AlertDialog.Builder builder = new AlertDialog.Builder( this );
+           builder.setTitle( "Confirm Request" );
+           builder.setMessage( "Fish Name :" + requestsList.get( i ).getFishname() + " \n " + "Rate  :" +
+                   requestsList.get( i ).getAmount() );
+           builder.setCancelable( false );
+           builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialogInterface, int i) {
+                   updateAsConfim( j );
+                   recreate();
+               }
+           } ).setNegativeButton( "No", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialogInterface, int i) {
+                   updateAsReject( j );
+                   dialogInterface.dismiss();
 
-        builder.setTitle( "Confirm Request" );
-        builder.setMessage( "Fish Name :"+requestsList.get( i ).getFishname()+" \n " +"Rate  :"+
-                requestsList.get( i ).getAmount());
-        builder.setCancelable( false );
-              builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-               updateAsConfim( j );
-                recreate();
-            }
-        } ).setNegativeButton( "No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-              updateAsReject( j );
-                dialogInterface.dismiss();
-
-            }
-        } );
-        AlertDialog alertDialog = builder.create();
-        alertDialog.setCanceledOnTouchOutside( true );
-        alertDialog.show();
-        Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setBackgroundColor( Color.GREEN);
-        Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        pbutton.setBackgroundColor( Color.RED);
+               }
+           } );
+           AlertDialog alertDialog = builder.create();
+           alertDialog.setCanceledOnTouchOutside( true );
+           alertDialog.show();
+           Button nbutton = alertDialog.getButton( DialogInterface.BUTTON_NEGATIVE );
+           nbutton.setBackgroundColor( Color.GREEN );
+           Button pbutton = alertDialog.getButton( DialogInterface.BUTTON_POSITIVE );
+           pbutton.setBackgroundColor( Color.RED );
+       }
     }
 
     public void updateAsConfim(final int i){

@@ -6,53 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/img"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="116dp"
         android:src="@drawable/icon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.279" />
 
     <TextView
         android:id="@+id/editText"
         android:layout_width="195dp"
         android:layout_height="93dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="101dp"
         android:ems="200"
         android:inputType="textPersonName"
         android:text="@string/mainname"
         android:textAppearance="@style/Base.Animation.AppCompat.Dialog"
         android:textColor="#082535"
         android:textSize="66sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/editText1"
         android:layout_width="133dp"
         android:layout_height="61dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="128dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Seller App"
         android:textColor="#082535"
         android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.614" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

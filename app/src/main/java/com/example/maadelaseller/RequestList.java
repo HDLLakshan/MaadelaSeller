@@ -34,19 +34,21 @@ public class RequestList extends ArrayAdapter<Requests> {
 
         TextView cusn = (TextView)listviweItem.findViewById( R.id.cname );
        TextView fname= (TextView)listviweItem.findViewById( R.id.fname );
-       TextView amount= (TextView)listviweItem.findViewById( R.id.amount);
+       TextView amount= (TextView)listviweItem.findViewById( R.id.amount );
        TextView rtimed = (TextView)listviweItem.findViewById( R.id.rtime);
+        TextView atimed = (TextView)listviweItem.findViewById( R.id.at);
 
         Requests requests = requestsList.get( position );
 
        if(requests.getStatus().equals( "Pending" ))
-           listviweItem.setBackgroundColor( Color.GREEN );
+           listviweItem.setBackgroundColor( Color.BLUE );
        if(requests.getStatus().equals( "Confirmed" ))
-           listviweItem.setBackgroundColor( Color.DKGRAY );
+           listviweItem.setBackgroundColor( Color.GREEN );
         fname.setText( requests.getFishname() );
-        amount.setText( "5kg" );
+        amount.setText( requests.getAmount() );
         cusn.setText( requests.getCusname() );
         rtimed.setText( requests.getTime() );
+        atimed.setText( requests.getAcctime() );
         return listviweItem;
     }
 }

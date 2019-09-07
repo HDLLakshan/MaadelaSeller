@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -47,7 +48,10 @@ public class MyShop extends Activity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         DateShopOpend = df.format(c);
-        shopname = "FreshFish";
+
+        SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
+        shopname = preferences.getString( "username","" );
+
         databaseFish = FirebaseDatabase.getInstance().getReference("DailySelling").child(DateShopOpend).child(shopname);
         listviewfish = (ListView)findViewById( R.id.fishlist );
         fishlist = new ArrayList<>(  );
@@ -85,6 +89,13 @@ public class MyShop extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent( MyShop.this,SellingFishItem.class );
+        startActivity( intent );
     }
 
     public void sendMessage(int i) {
@@ -179,22 +190,50 @@ public class MyShop extends Activity {
         startActivity( intent );
     }
 
-    public void deletemyshop(View view){
-        DatabaseReference delref = FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
-        delref.addListenerForSingleValueEvent(new ValueEventListener() {
+     public void deletemyshop(View view){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setMessage( "Are You Sure Close Your Shop " )
+                .setCancelable( false )
+                .setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseReference delref = FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
+                        delref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                dbref=FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
+                                dbref.removeValue();
+                                Toast.makeText(getApplicationContext(), "Shop Close Sucessfully",Toast.LENGTH_SHORT).show();
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        Intent intent = new Intent(MyShop.this,SellingFishItem.class );
+                        startActivity( intent );
+                    }
+                } ).setNegativeButton( "No", new DialogInterface.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    dbref=FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
-                    dbref.removeValue();
-                    Toast.makeText(getApplicationContext(), "Shop Close Sucessfully",Toast.LENGTH_SHORT).show();
-
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
             }
+        } );
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside( true );
+        alertDialog.show();
+        Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        nbutton.setBackgroundColor(Color.GREEN);
+        Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setBackgroundColor( Color.RED);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+
+
     }
 
 

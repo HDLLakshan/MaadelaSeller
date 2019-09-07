@@ -33,41 +33,12 @@ public class MainActivity extends Activity {
         handler.postDelayed( new Runnable() {
             @Override
             public void run() {
-               // Intent intent = new Intent( MainActivity.this, SellingFishItem.class );
-              //  startActivity( intent );
-                //finish();
+               Intent intent = new Intent( MainActivity.this, Lgin.class );
+               startActivity( intent );
+               finish();
 
-                Date c = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                final String DateShopOpend = df.format(c);
-                String TimeShopOpend = new SimpleDateFormat("HH:mm").format(new Date());
 
-             //   FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-               // DatabaseReference reference = firebaseDatabase.getReference();
-
-                DatabaseReference readRef = FirebaseDatabase.getInstance().getReference().child( "DailySelling" ).
-                        child( DateShopOpend );
-                readRef.addValueEventListener( new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                     //   Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                        if(dataSnapshot.hasChild("FreshFis")) {
-                            Intent intent = new Intent( MainActivity.this, MyShop.class );
-                            startActivity( intent );
-                            finish();
-                        }else {
-                            Intent intent = new Intent( MainActivity.this, SellingFishItem.class );
-                            startActivity( intent );
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                } );
             }
-        }, 2500 );
+        }, 500 );
     }
 }
