@@ -2,6 +2,7 @@ package com.example.maadelaseller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,6 +40,7 @@ public class MyShop extends Activity {
     private String DateShopOpend;
     EditText input;
     DatabaseReference dbref;
+    Dialog cusdialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -236,6 +238,12 @@ public class MyShop extends Activity {
 
     }
 
+    public void Customdialog(View view){
+        cusdialog = new Dialog( MyShop.this );
+        cusdialog.setContentView( R.layout.alertbox_up_rate );
+
+        cusdialog.show();
+    }
 
 
 }
