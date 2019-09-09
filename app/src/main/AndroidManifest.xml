@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Lgin"></activity>
+        <activity android:name=".UpdateLocation"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".setLocation" />
+        <activity android:name=".Lgin" />
         <activity android:name=".RequestNotification" />
         <activity android:name=".MyShop" />
         <activity android:name=".SellingFishItem" />
@@ -20,6 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDiC1SSoFYcBl_SRPWnvKCVhfUfAmdHWn4" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDiC1SSoFYcBl_SRPWnvKCVhfUfAmdHWn4" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
