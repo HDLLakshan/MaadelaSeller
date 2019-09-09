@@ -53,14 +53,13 @@ public class Lgin extends AppCompatActivity {
             SimpleDateFormat df = new SimpleDateFormat( "dd-MMM-yyyy" );
             final String DateShopOpend = df.format( c );
 
-            DatabaseReference readRef = FirebaseDatabase.getInstance().getReference().child( "DailySelling" ).
-                    child( DateShopOpend );
+            DatabaseReference readRef = FirebaseDatabase.getInstance().getReference().child( "location" );
             readRef.addValueEventListener( new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //   Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                     if(dataSnapshot.hasChild(uname)) {
-                        Intent intent = new Intent( Lgin.this, MyShop.class );
+                        Intent intent = new Intent( Lgin.this, SellingFishItem.class );
                         startActivity( intent );
                         finish();
                     }else {

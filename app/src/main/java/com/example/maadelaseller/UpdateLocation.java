@@ -135,13 +135,14 @@ public class UpdateLocation extends AppCompatActivity implements OnMapReadyCallb
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                for(int i=1;i<=dataSnapshot.getChildrenCount();i++) {
-                    System.out.println(ID);
-
-                    if(ID.equals(dataSnapshot.child(String.valueOf(i)).child(shopname).getValue().toString())){
-
-                        lan = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lan").getValue().toString());
-                        lon = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lon").getValue().toString());
+                for(DataSnapshot fishSnapshot : dataSnapshot.getChildren()) {
+                    LocationAll l = fishSnapshot.getValue(LocationAll.class);
+                    if(shopname.equals( l.getName() )){
+                  //  if(ID.equals(dataSnapshot.child(String.valueOf(i)).child(shopname).getValue().toString())){
+                      lan = l.getLan();
+                      lon = l.getLon();
+                     //   lan = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lan").getValue().toString());
+                     //   lon = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lon").getValue().toString());
                         SavedPre = new LatLng(lan, lon);
                         MMap.addMarker(new MarkerOptions().position(SavedPre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 

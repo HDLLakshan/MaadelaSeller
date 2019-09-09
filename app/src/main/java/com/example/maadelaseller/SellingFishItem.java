@@ -74,6 +74,9 @@ public class SellingFishItem extends Activity {
         shopname = preferences.getString( "username","" );
 
 
+
+
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference();
         reference.child( "Request" ).child( DateShopOpend ).addValueEventListener( new ValueEventListener() {
@@ -131,9 +134,7 @@ public class SellingFishItem extends Activity {
                       newref.setValue( dailySelling );
                 Toast.makeText(getApplicationContext(), " data saved Sussessfully ", Toast.LENGTH_SHORT).show();
                 clearControls();
-                Intent intent = new Intent( SellingFishItem.this,SellingFishItem.class );
-                startActivity( intent );
-                finish();
+
             }
         } catch (NumberFormatException e) {
             Toast.makeText(getApplicationContext(), "Invalid Rate", Toast.LENGTH_SHORT).show();
@@ -165,9 +166,9 @@ public class SellingFishItem extends Activity {
         alertDialog.setCanceledOnTouchOutside( true );
         alertDialog.show();
         Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setBackgroundColor(Color.GREEN);
+        nbutton.setTextColor(Color.BLACK);
         Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        pbutton.setBackgroundColor( Color.RED);
+        pbutton.setTextColor ( Color.BLACK);
     }
 
     public void gotoprofile(View view){

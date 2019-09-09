@@ -64,7 +64,7 @@ public class RequestNotification extends Activity {
                       Requests requests = reqSnapshot.getValue( Requests.class );
                       if(requests.getShopname().equals( shopname ))
                       requestsList.add( requests );
-                      System.out.println(  requestsList.get(0).getFid()+"errrrkkkkk");
+                      System.out.println(  shopname +"errrrkkkkk");
                   }
                   RequestList adapter = new RequestList( RequestNotification.this, requestsList );
                   listViewRequest.setAdapter( adapter );
@@ -94,7 +94,7 @@ public class RequestNotification extends Activity {
 
            AlertDialog.Builder builder = new AlertDialog.Builder( this );
            builder.setTitle( "Confirm Request" );
-           builder.setMessage( "Fish Name :" + requestsList.get( i ).getFishname() + " \n " + "Rate  :" +
+           builder.setMessage( "Fish Name :" + requestsList.get( i ).getFishname() + " \n " + "Amount  :" +
                    requestsList.get( i ).getAmount() );
            builder.setCancelable( false );
            builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
@@ -115,9 +115,9 @@ public class RequestNotification extends Activity {
            alertDialog.setCanceledOnTouchOutside( true );
            alertDialog.show();
            Button nbutton = alertDialog.getButton( DialogInterface.BUTTON_NEGATIVE );
-           nbutton.setBackgroundColor( Color.GREEN );
+           nbutton.setTextColor( Color.RED );
            Button pbutton = alertDialog.getButton( DialogInterface.BUTTON_POSITIVE );
-           pbutton.setBackgroundColor( Color.RED );
+           pbutton.setTextColor( Color.GREEN );
        }
     }
 

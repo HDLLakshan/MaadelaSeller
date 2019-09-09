@@ -130,9 +130,9 @@ public class MyShop extends Activity {
         alertDialog.setCanceledOnTouchOutside( true );
         alertDialog.show();
         Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setBackgroundColor( Color.GREEN);
+        nbutton.setTextColor( Color.BLACK);
         Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        pbutton.setBackgroundColor( Color.RED);
+        pbutton.setTextColor( Color.BLACK);
     }
 
     public void update(final int j, final double d){
@@ -176,6 +176,8 @@ public class MyShop extends Activity {
                     dbref.removeValue();
                     //clearcontrol();
                     Toast.makeText(getApplicationContext(), "DeleteSucessfull",Toast.LENGTH_SHORT).show();
+                    Intent in = new Intent( MyShop.this,MyShop.class );
+                    startActivity( in );
                 }else
                     Toast.makeText(getApplicationContext(), "Delete Un Sucessfull",Toast.LENGTH_SHORT).show();
             }
@@ -229,9 +231,9 @@ public class MyShop extends Activity {
         alertDialog.setCanceledOnTouchOutside( true );
         alertDialog.show();
         Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setBackgroundColor(Color.GREEN);
+        nbutton.setTextColor(Color.GREEN);
         Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        pbutton.setBackgroundColor( Color.RED);
+        pbutton.setTextColor( Color.RED);
 
 
 

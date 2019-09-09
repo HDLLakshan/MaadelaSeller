@@ -87,11 +87,10 @@ public class Profile extends AppCompatActivity implements OnMapReadyCallback {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(int i=1;i<=dataSnapshot.getChildrenCount();i++) {
-                    System.out.println(ID);
-
-                    if (ID.equals(dataSnapshot.child(String.valueOf(i)).child("id").getValue().toString())) {
-                        dbref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(i)).child(ID);
+                for(DataSnapshot fishSnapshot : dataSnapshot.getChildren()) {
+                    LocationAll l = fishSnapshot.getValue(LocationAll.class);
+                    if(shopname.equals( l.getName() )){
+                        dbref = FirebaseDatabase.getInstance().getReference().child( "location" ).child( shopname );
                         dbref.removeValue();
                         Toast.makeText(getApplicationContext(), "DeleteSucessfull", Toast.LENGTH_SHORT).show();
                     }
@@ -140,12 +139,14 @@ public class Profile extends AppCompatActivity implements OnMapReadyCallback {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                for(int i=1;i<=dataSnapshot.getChildrenCount();i++) {
-
-                    if(ID.equals(dataSnapshot.child(String.valueOf(i)).child(shopname).getValue().toString())){
-
-                    lan = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lan").getValue().toString());
-                    lon = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lon").getValue().toString());
+                for(DataSnapshot fishSnapshot : dataSnapshot.getChildren()) {
+                    LocationAll l = fishSnapshot.getValue(LocationAll.class);
+                    if(shopname.equals( l.getName() )){
+                    //if(shopname.equals(dataSnapshot.child(String.valueOf(i)).child(shopname).getValue().toString())){
+                         lan = l.getLan();
+                         lon=l.getLon();
+                    //lan = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lan").getValue().toString());
+                  //  lon = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lon").getValue().toString());
                     set = new LatLng(lan, lon);
                     MMap.addMarker(new MarkerOptions().position(set));
                     moveCamera(set, 15);
