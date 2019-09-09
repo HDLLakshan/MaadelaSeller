@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class UpdateLocation extends AppCompatActivity implements OnMapReadyCallb
     Double lan;
     Double lon;
     LatLng SavedPre;
+    String shopname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +61,9 @@ public class UpdateLocation extends AppCompatActivity implements OnMapReadyCallb
         //get ID from previous Intent
         Intent in = getIntent();
         ID = in.getStringExtra("ID");
+        SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
+        shopname = preferences.getString( "username","" );
+
     }
 
 
@@ -69,9 +74,9 @@ public class UpdateLocation extends AppCompatActivity implements OnMapReadyCallb
         location.setID("003");
         location.setLan(set.latitude);
         location.setLon(set.longitude);
-        location.setName("Fish");
+        location.setName(shopname);
 
-        dbref.child("3").setValue(location);
+        dbref.child(shopname).setValue(location);
         Toast.makeText(getApplicationContext(), "Data Save Succesfull",Toast.LENGTH_SHORT).show();
 
 
@@ -133,7 +138,7 @@ public class UpdateLocation extends AppCompatActivity implements OnMapReadyCallb
                 for(int i=1;i<=dataSnapshot.getChildrenCount();i++) {
                     System.out.println(ID);
 
-                    if(ID.equals(dataSnapshot.child(String.valueOf(i)).child("id").getValue().toString())){
+                    if(ID.equals(dataSnapshot.child(String.valueOf(i)).child(shopname).getValue().toString())){
 
                         lan = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lan").getValue().toString());
                         lon = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lon").getValue().toString());

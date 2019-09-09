@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class Profile extends AppCompatActivity implements OnMapReadyCallback {
     String ID;
     Double lan;
     Double lon;
+    String shopname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +60,10 @@ public class Profile extends AppCompatActivity implements OnMapReadyCallback {
         Intent in = getIntent();
         ID = in.getStringExtra("ID");
         System.out.println("==============="+ID+"===============");
+
+        SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
+        shopname = preferences.getString( "username","" );
+
     }
 
 
@@ -136,7 +142,7 @@ public class Profile extends AppCompatActivity implements OnMapReadyCallback {
 
                 for(int i=1;i<=dataSnapshot.getChildrenCount();i++) {
 
-                    if(ID.equals(dataSnapshot.child(String.valueOf(i)).child("id").getValue().toString())){
+                    if(ID.equals(dataSnapshot.child(String.valueOf(i)).child(shopname).getValue().toString())){
 
                     lan = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lan").getValue().toString());
                     lon = Double.parseDouble( dataSnapshot.child(String.valueOf(i)).child("lon").getValue().toString());

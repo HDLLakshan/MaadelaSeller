@@ -170,5 +170,12 @@ public class SellingFishItem extends Activity {
         pbutton.setBackgroundColor( Color.RED);
     }
 
+    public void gotoprofile(View view){
+        Intent intent = new Intent(this, Profile.class);
+      //  Intent intent = new Intent( this, SellingFishItem.class );
+        //intent.putExtra("ID", location.getID());
+        startActivity(intent);
+    }
+
 
 }
