@@ -64,7 +64,7 @@ public class Lgin extends AppCompatActivity {
                         startActivity( intent );
                         finish();
                     }else {
-                        Intent intent = new Intent( Lgin.this, SellingFishItem.class );
+                        Intent intent = new Intent( Lgin.this, setLocation.class );
                         startActivity( intent );
                         finish();
                     }
