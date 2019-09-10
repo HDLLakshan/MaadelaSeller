@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:text="Recived Notification For One Hour Reservation"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
