@@ -3,12 +3,14 @@ package com.example.maadelaseller;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowOrders extends AppCompatActivity {
+public class ShowOrders extends Activity {
     DatabaseReference databaseOrder;
     ListView listVieworders;
     List<OrderClass> olist;
@@ -34,6 +36,7 @@ public class ShowOrders extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_show_orders);
 
         databaseOrder = FirebaseDatabase.getInstance().getReference("OrderClass");
