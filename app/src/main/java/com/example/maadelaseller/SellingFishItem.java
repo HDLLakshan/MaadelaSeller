@@ -91,7 +91,7 @@ public class SellingFishItem extends Activity {
                     //  Toast.makeText( SearchNavi.this,"New Shop Opend", Toast.LENGTH_LONG).show();
                     NotificationManager notif=(NotificationManager)getSystemService( Context.NOTIFICATION_SERVICE);
                     Notification notify=new Notification.Builder
-                            (getApplicationContext()).setContentTitle("New Shop Opend").setContentText(DateShopOpend).setSmallIcon(R.drawable.icon).build();
+                            (getApplicationContext()).setContentTitle("New Request").setContentText(DateShopOpend).setSmallIcon(R.drawable.icon).build();
 
                     notify.flags |= Notification.FLAG_AUTO_CANCEL;
                     notif.notify(0, notify);

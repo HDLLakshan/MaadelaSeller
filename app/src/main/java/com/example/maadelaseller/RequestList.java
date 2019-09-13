@@ -41,9 +41,9 @@ public class RequestList extends ArrayAdapter<Requests> {
         Requests requests = requestsList.get( position );
 
        if(requests.getStatus().equals( "Pending" ))
-           listviweItem.setBackgroundColor( Color.BLUE );
+           listviweItem.setBackgroundColor( Color.GRAY );
        if(requests.getStatus().equals( "Confirmed" ))
-           listviweItem.setBackgroundColor( Color.GREEN );
+           listviweItem.setBackgroundColor( Color.MAGENTA );
         fname.setText( requests.getFishname() );
         amount.setText( requests.getAmount() );
         cusn.setText( requests.getCusname() );

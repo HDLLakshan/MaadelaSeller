@@ -75,18 +75,19 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="339dp"
-        android:layout_height="72dp"
+        android:layout_width="310dp"
+        android:layout_height="64dp"
         android:layout_marginTop="48dp"
         android:fontFamily="serif"
-        android:text="Select Selling Fish "
+        android:text="Add Selling Fish "
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -105,12 +106,12 @@
         android:layout_width="50dp"
         android:layout_height="41dp"
         android:onClick="gotoprofile"
-        android:src="@drawable/lc"
+        android:src="@android:drawable/ic_menu_mylocation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.023" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
