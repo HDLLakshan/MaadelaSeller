@@ -3,7 +3,9 @@ package com.example.maadelaseller;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -16,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderRequestNotification extends AppCompatActivity {
+public class OrderRequestNotification extends Activity {
 
     DatabaseReference oodatabaseOrder;
     ListView oolistVieworders;
@@ -27,6 +29,7 @@ public class OrderRequestNotification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_order_request_notification);
 
         oodatabaseOrder = FirebaseDatabase.getInstance().getReference("OrderClass");
