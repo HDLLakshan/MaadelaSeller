@@ -247,5 +247,9 @@ public class MyShop extends Activity {
         cusdialog.show();
     }
 
+    public void viewCustomerOrders(View view){
+        Intent intent = new Intent(MyShop.this,ShowOrders.class );
+        startActivity( intent );
+    }
 
 }
