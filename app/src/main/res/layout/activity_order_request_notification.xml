@@ -9,8 +9,8 @@
 
     <ListView
         android:id="@+id/orreqqlist"
-        android:layout_width="348dp"
-        android:layout_height="577dp"
+        android:layout_width="329dp"
+        android:layout_height="572dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -25,12 +25,14 @@
         android:id="@+id/textView6"
         android:layout_width="233dp"
         android:layout_height="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="Confirmed Orders"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
