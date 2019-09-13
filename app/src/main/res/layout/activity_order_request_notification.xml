@@ -6,21 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".OrderRequestNotification">
 
+
     <ListView
         android:id="@+id/orreqqlist"
-        android:layout_width="365dp"
-        android:layout_height="623dp"
+        android:layout_width="348dp"
+        android:layout_height="577dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintVertical_bias="0.759">
+
+
+    </ListView>
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="233dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="Confirmed Orders"
         android:textSize="24sp"
