@@ -75,8 +75,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="310dp"
-        android:layout_height="64dp"
+        android:layout_width="194dp"
+        android:layout_height="55dp"
         android:layout_marginTop="48dp"
         android:fontFamily="serif"
         android:text="Add Selling Fish "
@@ -84,16 +84,16 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="40dp"
-        android:layout_height="34dp"
-        android:src="@drawable/offical"
+        android:layout_width="43dp"
+        android:layout_height="41dp"
+        android:src="@android:drawable/ic_menu_preferences"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.078"
@@ -106,7 +106,7 @@
         android:layout_width="50dp"
         android:layout_height="41dp"
         android:onClick="gotoprofile"
-        android:src="@android:drawable/ic_menu_mylocation"
+        android:src="@android:drawable/ic_menu_preferences"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
