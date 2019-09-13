@@ -57,7 +57,7 @@ public class MyShop extends Activity {
         databaseFish = FirebaseDatabase.getInstance().getReference("DailySelling").child(DateShopOpend).child(shopname);
         listviewfish = (ListView)findViewById( R.id.fishlist );
         fishlist = new ArrayList<>(  );
-
+        fishlist.clear();
         databaseFish.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -148,7 +148,6 @@ public class MyShop extends Activity {
 
                        dbref = FirebaseDatabase.getInstance().getReference().child("DailySelling").child(fishlist.get( j ).getDate()).child( fishlist.get( j ).getShopName()).child( fishlist.get( j ).getId() );
                         dbref.setValue(fishlist.get( j ));
-                        recreate();
                         Toast.makeText(getApplicationContext(), "Update Sucessfull",Toast.LENGTH_SHORT).show();
 
                     } catch (NumberFormatException e) {
@@ -176,8 +175,7 @@ public class MyShop extends Activity {
                     dbref.removeValue();
                     //clearcontrol();
                     Toast.makeText(getApplicationContext(), "DeleteSucessfull",Toast.LENGTH_SHORT).show();
-                    Intent in = new Intent( MyShop.this,MyShop.class );
-                    startActivity( in );
+
                 }else
                     Toast.makeText(getApplicationContext(), "Delete Un Sucessfull",Toast.LENGTH_SHORT).show();
             }
