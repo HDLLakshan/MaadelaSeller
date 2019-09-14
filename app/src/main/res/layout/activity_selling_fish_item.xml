@@ -8,30 +8,32 @@
 
     <AutoCompleteTextView
         android:id="@+id/fishname"
-        android:layout_width="279dp"
-        android:layout_height="47dp"
+        android:layout_width="194dp"
+        android:layout_height="46dp"
+        android:background="@drawable/edit_text_border"
         android:completionHint="Enter Fish"
         android:completionThreshold="1"
-        android:hint="Enter Fish Item for Search"
+        android:gravity="center"
+        android:hint="Enter Fish Item"
         android:padding="10dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.289" />
 
     <Button
         android:id="@+id/submit"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="163dp"
         android:layout_height="56dp"
-        android:background="@drawable/button_border"
         android:onClick="SaveSellingFishItem"
         android:text="Add"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,28 +43,30 @@
 
     <Button
         android:id="@+id/ViewCart"
-        android:layout_width="284dp"
-        android:layout_height="56dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="186dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/button_border"
-        android:onClick="sendMessage"
+        android:onClick="GoToMyshop"
         android:text="Submit"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.943" />
+        app:layout_constraintVertical_bias="0.867" />
 
     <EditText
         android:id="@+id/rate"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_width="183dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:hint="Rate per Kg"
+        android:background="@drawable/edit_text_border"
+        android:gravity="center"
         android:inputType="numberSigned"
         android:padding="10dp"
         android:textColor="@color/colorPrimary"
@@ -71,27 +75,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397" />
+        app:layout_constraintVertical_bias="0.418" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="339dp"
-        android:layout_height="72dp"
+        android:layout_width="226dp"
+        android:layout_height="61dp"
         android:layout_marginTop="48dp"
         android:fontFamily="serif"
-        android:text="Select Selling Fish "
+        android:gravity="center"
+        android:text="Set Selling Fish Today"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="50dp"
-        android:layout_height="41dp"
+        android:layout_width="60dp"
+        android:layout_height="53dp"
         android:src="@drawable/bells"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,8 +108,8 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="41dp"
+        android:layout_width="48dp"
+        android:layout_height="47dp"
         android:onClick="gotoprofile"
         android:src="@drawable/lc"
         app:layout_constraintBottom_toBottomOf="parent"

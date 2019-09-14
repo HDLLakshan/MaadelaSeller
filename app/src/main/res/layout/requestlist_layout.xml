@@ -8,41 +8,43 @@
 
     <TextView
         android:id="@+id/fname"
-        android:layout_width="167dp"
-        android:layout_height="40dp"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="4dp"
         android:text="TextView"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/cname"
-        android:layout_width="162dp"
-        android:layout_height="19dp"
+        android:layout_width="152dp"
+        android:layout_height="18dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="36dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/amount"
-        android:layout_width="163dp"
-        android:layout_height="39dp"
+        android:layout_width="149dp"
+        android:layout_height="36dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="44dp"
         android:text="TextView"
+        android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/rtime"
-        android:layout_width="161dp"
-        android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="154dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="36dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cname" />
@@ -52,8 +54,10 @@
         android:layout_width="153dp"
         android:layout_height="30dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="36dp"
         android:text="TextView"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cname" />
 

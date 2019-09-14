@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -38,7 +39,7 @@ public class SellingFishItem extends Activity {
     private String shopname;
     private EditText Fishname;
     private EditText ratekg;
-    private String DateShopOpend;
+    private String DateShopOpend,name;
     private String TimeShopOpend;
     private DailySelling dailySelling;
     DatabaseReference dbRef;
@@ -60,6 +61,14 @@ public class SellingFishItem extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>( this,android.R.layout.simple_list_item_1,Fish );
         et.setAdapter( adapter );
 
+        et.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                name=Fish[i];
+                ratekg.requestFocus();
+            }
+        } );
+
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -73,36 +82,6 @@ public class SellingFishItem extends Activity {
         SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
         shopname = preferences.getString( "username","" );
 
-
-
-
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference reference = firebaseDatabase.getReference();
-        reference.child( "Request" ).child( DateShopOpend ).addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-
-                for(DataSnapshot child:children){
-                     // DailySelling dailySelling = child.getValue(DailySelling.class);
-//                            String shopname = dataSnapshot.child( DateShopOpend ).getValue().toString();
-
-                    //  Toast.makeText( SearchNavi.this,"New Shop Opend", Toast.LENGTH_LONG).show();
-                    NotificationManager notif=(NotificationManager)getSystemService( Context.NOTIFICATION_SERVICE);
-                    Notification notify=new Notification.Builder
-                            (getApplicationContext()).setContentTitle("New Request").setContentText(DateShopOpend).setSmallIcon(R.drawable.icon).build();
-
-                    notify.flags |= Notification.FLAG_AUTO_CANCEL;
-                    notif.notify(0, notify);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        } );
 
 
 
@@ -134,6 +113,7 @@ public class SellingFishItem extends Activity {
                       newref.setValue( dailySelling );
                 Toast.makeText(getApplicationContext(), " data saved Sussessfully ", Toast.LENGTH_SHORT).show();
                 clearControls();
+                et.requestFocus();
 
             }
         } catch (NumberFormatException e) {
@@ -145,7 +125,7 @@ public class SellingFishItem extends Activity {
 
 
 
-    public void sendMessage(View view) {
+    public void GoToMyshop(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder( this );
         builder.setMessage( "Are You Add All selling fish item? " )

@@ -8,11 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,9 +41,9 @@ public class MyShop extends Activity {
     List<DailySelling> fishlist;
     private String shopname;
     private String DateShopOpend;
-    EditText input;
+    // EditText input;
     DatabaseReference dbref;
-    Dialog cusdialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -57,10 +60,11 @@ public class MyShop extends Activity {
         databaseFish = FirebaseDatabase.getInstance().getReference("DailySelling").child(DateShopOpend).child(shopname);
         listviewfish = (ListView)findViewById( R.id.fishlist );
         fishlist = new ArrayList<>(  );
-        fishlist.clear();
+
         databaseFish.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                fishlist.clear();
                 for(DataSnapshot fishSnapshot : dataSnapshot.getChildren()){
                     DailySelling dailySelling = fishSnapshot.getValue(DailySelling.class);
                     fishlist.add( dailySelling );
@@ -74,7 +78,7 @@ public class MyShop extends Activity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         System.out.println("dfsfsd");
                       //  Toast.makeText(getApplicationContext(),fishlist.get( i ).getFishname(),Toast.LENGTH_LONG ).show();
-                        sendMessage(i);
+                        DialogBox(i);
 
                     }
                 } );
@@ -100,30 +104,39 @@ public class MyShop extends Activity {
         startActivity( intent );
     }
 
-    public void sendMessage(int i) {
+    public void DialogBox(int i) {
         final int j = i;
 
         AlertDialog.Builder builder = new AlertDialog.Builder( this );
 
          builder.setTitle( "Delete or Update Rate" );
-          builder.setMessage( "Fish Name :"+fishlist.get( i ).getFishname()+" \n " +"Rate");
+          builder.setMessage( "Fish Name :"+fishlist.get( i ).getFishname()+" \n " +"Rate :"+fishlist.get( i ).getRate());
           builder.setCancelable( false );
-          input = new EditText( this );
-          input.setPadding( 20,0,0,0  );
-          builder.setView( input );
-          input.setText( Double.toString( fishlist.get( i ).getRate()) );
+        final EditText input = new EditText(this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        input.setGravity( Gravity.CENTER_VERTICAL );
+        input.setHint("Enter New Rate " );
+        input.setInputType( InputType.TYPE_CLASS_NUMBER );
+        builder.setView(input);
+
+       // input.setText( Double.toString( fishlist.get( i ).getRate()) );
           builder.setPositiveButton( "Delete Fish Item", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     delete( j );
-                        recreate();
                     }
                 } ).setNegativeButton( "Update Rate", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                update( j, Double.parseDouble(input.getText().toString().trim()) );
-                dialogInterface.dismiss();
-
+                if(input.getText().toString().equals( "" ))
+                    Toast.makeText( getApplicationContext(), "Please Enter New Rate", Toast.LENGTH_SHORT ).show();
+                else {
+                    update( j, Double.parseDouble( input.getText().toString().trim() ) );
+                    dialogInterface.dismiss();
+                }
             }
         } );
         AlertDialog alertDialog = builder.create();
@@ -136,30 +149,32 @@ public class MyShop extends Activity {
     }
 
     public void update(final int j, final double d){
-        final String m = fishlist.get( j ).getDate();
-   System.out.println( fishlist.get( j ).getId()+"ppppppppppppppp" );
-        DatabaseReference upref = FirebaseDatabase.getInstance().getReference().child("DailySelling");
-        upref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(m)) {
-                    try {
-                        fishlist.get( j ).setRate( d );
 
-                       dbref = FirebaseDatabase.getInstance().getReference().child("DailySelling").child(fishlist.get( j ).getDate()).child( fishlist.get( j ).getShopName()).child( fishlist.get( j ).getId() );
-                        dbref.setValue(fishlist.get( j ));
-                        Toast.makeText(getApplicationContext(), "Update Sucessfull",Toast.LENGTH_SHORT).show();
+            final String m = fishlist.get( j ).getDate();
+            System.out.println( fishlist.get( j ).getId() + "ppppppppppppppp" );
+            DatabaseReference upref = FirebaseDatabase.getInstance().getReference().child( "DailySelling" );
+            upref.addListenerForSingleValueEvent( new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild( m )) {
+                        try {
+                            fishlist.get( j ).setRate( d );
 
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(getApplicationContext(), "Update Unsucesssfull",Toast.LENGTH_SHORT).show();
+                            dbref = FirebaseDatabase.getInstance().getReference().child( "DailySelling" ).child( fishlist.get( j ).getDate() ).child( fishlist.get( j ).getShopName() ).child( fishlist.get( j ).getId() );
+                            dbref.setValue( fishlist.get( j ) );
+                            Toast.makeText( getApplicationContext(), "Update Sucessfull", Toast.LENGTH_SHORT ).show();
+
+                        } catch (NumberFormatException e) {
+                            Toast.makeText( getApplicationContext(), "Update Unsucesssfull", Toast.LENGTH_SHORT ).show();
+                        }
                     }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            } );
 
 
     }
@@ -238,12 +253,6 @@ public class MyShop extends Activity {
 
     }
 
-    public void Customdialog(View view){
-        cusdialog = new Dialog( MyShop.this );
-        cusdialog.setContentView( R.layout.alertbox_up_rate );
-
-        cusdialog.show();
-    }
 
     public void viewCustomerOrders(View view){
         Intent intent = new Intent(MyShop.this,ShowOrders.class );

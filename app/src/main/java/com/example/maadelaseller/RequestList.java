@@ -33,22 +33,24 @@ public class RequestList extends ArrayAdapter<Requests> {
         View listviweItem = inflater.inflate( R.layout.requestlist_layout,null,true );
 
         TextView cusn = (TextView)listviweItem.findViewById( R.id.cname );
-       TextView fname= (TextView)listviweItem.findViewById( R.id.fname );
-       TextView amount= (TextView)listviweItem.findViewById( R.id.amount );
-       TextView rtimed = (TextView)listviweItem.findViewById( R.id.rtime);
+        TextView fname= (TextView)listviweItem.findViewById( R.id.fname );
+        TextView amount= (TextView)listviweItem.findViewById( R.id.amount );
+        TextView rtimed = (TextView)listviweItem.findViewById( R.id.rtime);
         TextView atimed = (TextView)listviweItem.findViewById( R.id.at);
 
         Requests requests = requestsList.get( position );
 
-       if(requests.getStatus().equals( "Pending" ))
-           listviweItem.setBackgroundColor( Color.GRAY );
-       if(requests.getStatus().equals( "Confirmed" ))
-           listviweItem.setBackgroundColor( Color.MAGENTA );
+
         fname.setText( requests.getFishname() );
-        amount.setText( requests.getAmount() );
+        amount.setText( requests.getAmount()+"Kg" );
         cusn.setText( requests.getCusname() );
         rtimed.setText( requests.getTime() );
-        atimed.setText( requests.getAcctime() );
+        if(requests.getStatus().equals( "Pending" ))
+            atimed.setText( "Pending" );
+            if(requests.getStatus().equals( "Confirmed" ))
+        atimed.setText( "Accepted at :"+requests.getAcctime() );
+        if(requests.getStatus().equals( "Reject" ))
+            atimed.setText( "Rejected at :"+requests.getAcctime() );
         return listviweItem;
     }
 }

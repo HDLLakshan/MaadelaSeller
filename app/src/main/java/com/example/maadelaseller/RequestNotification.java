@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -36,7 +38,7 @@ public class RequestNotification extends Activity {
     ListView listViewRequest;
     List<Requests> requestsList;
 
-    String DateShopOpend,shopname;
+    String DateShopOpend,shopname,phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class RequestNotification extends Activity {
         dbref.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                requestsList.clear();
 
               try {
                   for (DataSnapshot reqSnapshot : dataSnapshot.getChildren()) {
@@ -75,7 +78,12 @@ public class RequestNotification extends Activity {
               listViewRequest.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                   @Override
                   public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                          ConfirmBox( i );
+                      if(requestsList.get( i ).getStatus().equals( "Pending" ))
+                      ConfirmBox( i );
+                      else if(requestsList.get( i ).getStatus().equals( "Confirmed" )) {
+                          getphonenum( i );
+                          callBox( i );
+                      }
                   }
               } );
 
@@ -115,9 +123,9 @@ public class RequestNotification extends Activity {
            alertDialog.setCanceledOnTouchOutside( true );
            alertDialog.show();
            Button nbutton = alertDialog.getButton( DialogInterface.BUTTON_NEGATIVE );
-           nbutton.setTextColor( Color.RED );
+           nbutton.setTextColor( Color.BLACK );
            Button pbutton = alertDialog.getButton( DialogInterface.BUTTON_POSITIVE );
-           pbutton.setTextColor( Color.GREEN );
+           pbutton.setTextColor( Color.BLACK );
        }
     }
 
@@ -144,11 +152,13 @@ public class RequestNotification extends Activity {
     }
 
     public void updateAsReject(final int i){
+        final String time = new SimpleDateFormat("HH:mm").format(new Date());
         DatabaseReference upref = FirebaseDatabase.getInstance().getReference().child("Request");
         upref.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(DateShopOpend));
+                requestsList.get( i ).setAcctime( time );
                 requestsList.get( i ).setStatus( "Reject" );
                 dbref = FirebaseDatabase.getInstance().getReference().child("Request").child( DateShopOpend ).child( requestsList.get( i ).getReqid() );
                 dbref.setValue(requestsList.get( i ));
@@ -161,6 +171,46 @@ public class RequestNotification extends Activity {
             }
         } );
 
+    }
+
+    public void callBox(int i){
+        final int j = i;
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+
+        builder.setTitle( "Shop Details" );
+        builder.setMessage( phoneNumber );
+
+
+
+
+        builder.setPositiveButton( "Call Customer", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent( Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+            }
+        } );
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside( true );
+        alertDialog.show();
+        Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setTextColor( Color.BLACK);
+
+    }
+
+    public void getphonenum(int i){
+        DatabaseReference rref = FirebaseDatabase.getInstance().getReference().child( "User" ).child( requestsList.get( i ).getCusname() );
+       rref.addListenerForSingleValueEvent( new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               if(dataSnapshot.hasChildren())
+                   phoneNumber = dataSnapshot.child( "contactNo" ).getValue().toString();
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       } );
     }
 
 
