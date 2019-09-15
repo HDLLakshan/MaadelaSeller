@@ -108,10 +108,12 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="48dp"
-        android:layout_height="47dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:onClick="gotoprofile"
+        android:scaleType="fitXY"
         android:src="@drawable/lc"
+        android:background="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.898"

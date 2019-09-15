@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class RequestNotification extends Activity {
 
@@ -82,7 +83,6 @@ public class RequestNotification extends Activity {
                       ConfirmBox( i );
                       else if(requestsList.get( i ).getStatus().equals( "Confirmed" )) {
                           getphonenum( i );
-                          callBox( i );
                       }
                   }
               } );
@@ -173,12 +173,12 @@ public class RequestNotification extends Activity {
 
     }
 
-    public void callBox(int i){
+     public void callBox(int i){
         final int j = i;
         AlertDialog.Builder builder = new AlertDialog.Builder( this );
 
-        builder.setTitle( "Shop Details" );
-        builder.setMessage( phoneNumber );
+        builder.setTitle( "Customer  Details" );
+        builder.setMessage( "Customer Name  : "+ requestsList.get( i ).getCusname() +"\n Tel             : "+phoneNumber );
 
 
 
@@ -198,12 +198,14 @@ public class RequestNotification extends Activity {
     }
 
     public void getphonenum(int i){
+        final int j = i;
         DatabaseReference rref = FirebaseDatabase.getInstance().getReference().child( "User" ).child( requestsList.get( i ).getCusname() );
        rref.addListenerForSingleValueEvent( new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                if(dataSnapshot.hasChildren())
                    phoneNumber = dataSnapshot.child( "contactNo" ).getValue().toString();
+               callBox( j );
            }
 
            @Override
