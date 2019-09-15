@@ -24,14 +24,13 @@
     <ListView
         android:id="@+id/orderlistshow"
         android:layout_width="364dp"
-        android:layout_height="556dp"
-        android:layout_marginTop="156dp"
+        android:layout_height="512dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054">
+        app:layout_constraintTop_toBottomOf="@+id/hr"
+        app:layout_constraintVertical_bias="0.371">
 
 
     </ListView>
@@ -52,7 +51,7 @@
         android:id="@+id/hr"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="136dp"
         android:background="#444"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp"></TableRow>

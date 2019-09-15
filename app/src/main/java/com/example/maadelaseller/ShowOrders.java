@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -26,12 +27,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class ShowOrders extends Activity {
     DatabaseReference databaseOrder;
     ListView listVieworders;
     List<OrderClass> olist;
     DatabaseReference odbr;
-    String name;
+    String shopname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,10 @@ public class ShowOrders extends Activity {
         listVieworders = (ListView) findViewById(R.id.orderlistshow);
 
         olist = new ArrayList<>();
-        name="FreshFish";
+        //shopname="FreshFish";
+
+        SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
+        shopname = preferences.getString( "username","" );
 
 
         databaseOrder.addValueEventListener(new ValueEventListener() {
@@ -78,6 +84,7 @@ public class ShowOrders extends Activity {
         });
     }
 
+
     public void sendMessage(int i){
         final int j = i;
 
@@ -93,10 +100,9 @@ public class ShowOrders extends Activity {
         } ).setNegativeButton( "Reject", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-
+                //updateAsReject(j);
             }
-        } );
+        });
         AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside( true );
         alertDialog.show();
@@ -116,7 +122,7 @@ public class ShowOrders extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(olist.get(i).getId())) {
-                    olist.get(i).setSellerName(name);
+                    olist.get(i).setSellerName(shopname);
                     olist.get(i).setStatus("Confirmed");
                     odbr = FirebaseDatabase.getInstance().getReference().child("OrderClass").child(olist.get(i).getId());
                     odbr.setValue(olist.get(i));
@@ -132,9 +138,32 @@ public class ShowOrders extends Activity {
 
     }
 
+    public void updateAsReject(final int i){
+        DatabaseReference uprefs = FirebaseDatabase.getInstance().getReference().child("OrderClass");
+        uprefs.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(olist.get(i).getId()));
+                olist.get(i).setSellerName(shopname);
+                olist.get( i ).setStatus( "Reject" );
+                odbr = FirebaseDatabase.getInstance().getReference().child("OrderClass").child( olist.get( i ).getId() );
+                odbr.setValue(olist.get( i ));
+                Toast.makeText(getApplicationContext(), "Update Sucessfull As Reject",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+    }
+
+
+
+
     public void ViewConfirmOrderss(View view){
         Intent intent = new Intent( ShowOrders.this,OrderRequestNotification.class );
         startActivity( intent );
     }
 }
-

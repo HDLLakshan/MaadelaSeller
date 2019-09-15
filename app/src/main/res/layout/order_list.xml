@@ -9,13 +9,13 @@
     <TextView
         android:id="@+id/cname"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="  textview"
-        android:textSize="16sp"
         android:textColor="#2d2d2d"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,52 +23,63 @@
         android:id="@+id/type"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="8dp"
         android:text="  TextView"
-        android:textSize="16sp"
         android:textColor="#2d2d2d"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/contactc" />
 
     <TextView
         android:id="@+id/amount"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="8dp"
         android:text="  TextView"
-        android:textSize="16sp"
         android:textColor="#2d2d2d"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/type" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
         android:text="TextView"
         android:textColor="#2d2d2d"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.284"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/amount" />
 
     <TextView
         android:id="@+id/statusord"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginStart="8dp"
         android:text="TextView"
-        android:textSize="16sp"
         android:textColor="#2d2d2d"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.284"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <TextView
+        android:id="@+id/contactc"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textColor="#2d2d2d"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
