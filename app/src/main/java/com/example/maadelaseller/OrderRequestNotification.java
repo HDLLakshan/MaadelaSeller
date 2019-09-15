@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ public class OrderRequestNotification extends Activity {
     List<OrderClass> ooolist;
     DatabaseReference ooodbr;
     String ooname;
+    String sellcontact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,11 @@ public class OrderRequestNotification extends Activity {
         oolistVieworders = (ListView) findViewById(R.id.orreqqlist);
 
         ooolist = new ArrayList<>();
-        ooname="FreshFish";
 
+        SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
+        ooname = preferences.getString( "username","" );
+
+        sellcontact = "0782345674";
 
         oodatabaseOrder.addValueEventListener(new ValueEventListener() {
             @Override
@@ -46,9 +51,10 @@ public class OrderRequestNotification extends Activity {
                 for(DataSnapshot oorder : dataSnapshot.getChildren()){
                     // ooolist.clear();
                     OrderClass oordclass = oorder.getValue(OrderClass.class);
-                  //if(oordclass.getCustomerName().matches(ooname))
                     if(oordclass.getStatus().equals("Confirmed"))
-                        ooolist.add(oordclass);
+                        if(oordclass.getSellerName().equals(ooname))
+                            ooolist.add(oordclass);
+
                 }
                 ArrayAdapter adapter = new OrderList(OrderRequestNotification.this,ooolist);
                 oolistVieworders.setAdapter(adapter);

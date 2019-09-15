@@ -9,8 +9,26 @@ public class OrderClass {
     private String SellerName ;
     private String status;
     private String CustomerContact;
+    private String SellerContact;
     private String id;
+    private double totprice;
 
+
+    public String getSellerContact() {
+        return SellerContact;
+    }
+
+    public void setSellerContact(String sellerContact) {
+        SellerContact = sellerContact;
+    }
+
+    public double getTotprice() {
+        return totprice;
+    }
+
+    public void setTotprice(double totprice) {
+        this.totprice = totprice;
+    }
 
     public String getType() {
         return type;
