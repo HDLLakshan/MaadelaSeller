@@ -173,6 +173,28 @@ public class RequestNotification extends Activity {
 
     }
 
+    public void updateAsSold(final int i){
+        final String time = new SimpleDateFormat("HH:mm").format(new Date());
+        DatabaseReference upref = FirebaseDatabase.getInstance().getReference().child("Request");
+        upref.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(DateShopOpend));
+                requestsList.get( i ).setAcctime( time );
+                requestsList.get( i ).setStatus( "Sold" );
+                dbref = FirebaseDatabase.getInstance().getReference().child("Request").child( DateShopOpend ).child( requestsList.get( i ).getReqid() );
+                dbref.setValue(requestsList.get( i ));
+                Toast.makeText(getApplicationContext(), "Update Sucessfull As Reject",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+    }
+
      public void callBox(int i){
         final int j = i;
         AlertDialog.Builder builder = new AlertDialog.Builder( this );
@@ -189,13 +211,23 @@ public class RequestNotification extends Activity {
                 startActivity(new Intent( Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
             }
         } );
+         builder.setNegativeButton( "Sold", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialogInterface, int i) {
+                 updateAsSold( j );
+             }
+         } );
+
         AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside( true );
         alertDialog.show();
         Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         pbutton.setTextColor( Color.BLACK);
+         Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+         nbutton.setTextColor( Color.BLACK);
 
-    }
+
+     }
 
     public void getphonenum(int i){
         final int j = i;

@@ -47,10 +47,18 @@ public class RequestList extends ArrayAdapter<Requests> {
         rtimed.setText( requests.getTime() );
         if(requests.getStatus().equals( "Pending" ))
             atimed.setText( "Pending" );
-            if(requests.getStatus().equals( "Confirmed" ))
-        atimed.setText( "Accepted at :"+requests.getAcctime() );
+        if(requests.getStatus().equals( "Confirmed" ))
+            atimed.setText( "Accepted at :"+requests.getAcctime() );
         if(requests.getStatus().equals( "Reject" ))
             atimed.setText( "Rejected at :"+requests.getAcctime() );
+        if(requests.getStatus().equals( "Sold" ))
+            atimed.setText("Completed");
+
+        if(requests.getStatus().equals( "Rated" ))
+            atimed.setText("Completed");
+
+
+
         return listviweItem;
     }
 }

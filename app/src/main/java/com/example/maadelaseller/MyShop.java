@@ -41,7 +41,6 @@ public class MyShop extends Activity {
     List<DailySelling> fishlist;
     private String shopname;
     private String DateShopOpend;
-    // EditText input;
     DatabaseReference dbref;
 
     @Override
