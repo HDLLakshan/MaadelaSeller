@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -18,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,12 +37,11 @@ import java.util.Date;
 
 public class SellingFishItem extends Activity {
 
-    private static final String[] Fish = new String[]{"Balaya", "Thora", "Thalmaha", "Tuuna"};
 
     private String shopname;
     private EditText Fishname;
     private EditText ratekg;
-    private String DateShopOpend,name;
+    private String DateShopOpend;
     private String TimeShopOpend;
     private DailySelling dailySelling;
     DatabaseReference dbRef;
@@ -55,16 +57,17 @@ public class SellingFishItem extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         requestWindowFeature( Window.FEATURE_NO_TITLE );
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         setContentView( R.layout.activity_selling_fish_item );
 
         et = findViewById( R.id.fishname );
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>( this,android.R.layout.simple_list_item_1,Fish );
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>( this,android.R.layout.simple_list_item_1,FishItemNames.Fish );
         et.setAdapter( adapter );
 
         et.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                name=Fish[i];
+               // name=FishItemNames.Fish[i];
                 ratekg.requestFocus();
             }
         } );
@@ -91,12 +94,15 @@ public class SellingFishItem extends Activity {
     public void SaveSellingFishItem(View view){
         dbRef = FirebaseDatabase.getInstance().getReference().child("DailySelling").child(DateShopOpend ).child( shopname );
         try {
-            if (TextUtils.isEmpty(Fishname.getText().toString()))
-                Toast.makeText(getApplicationContext(), "please enter Fish Name", Toast.LENGTH_SHORT).show();
-
-            else if (TextUtils.isEmpty(ratekg.getText().toString()))
-                Toast.makeText(getApplicationContext(), "please enter an price of 0ne kg", Toast.LENGTH_SHORT).show();
-
+            if (TextUtils.isEmpty(Fishname.getText().toString())) {
+               Toast t = Toast.makeText( getApplicationContext(), "Please enter Fish Name", Toast.LENGTH_SHORT );
+               designtoast( t );
+            }
+            else if
+                (TextUtils.isEmpty( ratekg.getText().toString() )){
+               Toast t = Toast.makeText( getApplicationContext(), "Please enter an price of One kg", Toast.LENGTH_SHORT );
+               designtoast( t );
+            }
 
 
             else {
@@ -111,15 +117,20 @@ public class SellingFishItem extends Activity {
                       String pushid = newref.getKey();
                       dailySelling.setId( pushid );
                       newref.setValue( dailySelling );
-                Toast.makeText(getApplicationContext(), " data saved Sussessfully ", Toast.LENGTH_SHORT).show();
+
+               Toast t = Toast.makeText(getApplicationContext(), " data saved Sussessfully ", Toast.LENGTH_SHORT);
+               designtoast( t );
+
                 clearControls();
                 et.requestFocus();
 
             }
         } catch (NumberFormatException e) {
-            Toast.makeText(getApplicationContext(), "Invalid Rate", Toast.LENGTH_SHORT).show();
+           Toast t = Toast.makeText(getApplicationContext(), "Invalid Rate", Toast.LENGTH_SHORT);
+           designtoast( t );
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Invalid !!!!!", Toast.LENGTH_SHORT).show();
+            Toast  t= Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_SHORT);
+            designtoast( t );
         }
     }
 
@@ -158,5 +169,17 @@ public class SellingFishItem extends Activity {
         startActivity(intent);
     }
 
+    public void designtoast(Toast toast){
+        toast.setGravity( Gravity.BOTTOM, 0, 0);
+        View view = toast.getView();
+        view.setBackgroundColor(Color.BLACK);
+        TextView text = (TextView) view.findViewById(android.R.id.message);
+
+        //Shadow of the Of the Text Color
+        text.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+        text.setTextColor(Color.WHITE);
+         text.setTextSize(16);
+        toast.show();
+    }
 
 }

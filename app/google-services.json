@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "47243451926-g02e9ll0cqibgbe2pqt5jrhq579i3e57.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maadela",
+            "certificate_hash": "6e6c29a8cac7c0fbe5d0f02afb4bf309a0d74bf0"
+          }
+        },
+        {
+          "client_id": "47243451926-rfuhqprahrtb7k956mb5l22u43d8geau.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maadela",
+            "certificate_hash": "4f78c6e9d96349db52f4aa7b48c1eb8267905ed6"
+          }
+        },
+        {
           "client_id": "47243451926-3n1edeu3cuq5k9spr3os41oe4pr9o3bc.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -43,6 +59,67 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "47243451926-j21iuf2i6331mci0dcdek5n10c0n796r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maadelaseller",
+            "certificate_hash": "bf054273c5e7f870f8683820eaf71a4f9ddbc074"
+          }
+        },
+        {
+          "client_id": "47243451926-etcvsff114gn1r3fn7do9kr4vid949o5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maadelaseller",
+            "certificate_hash": "4f4459938671b9fe668fcbb6e54e69ecf882a717"
+          }
+        },
+        {
+          "client_id": "47243451926-3n1edeu3cuq5k9spr3os41oe4pr9o3bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBri-Y-9zMWe6xaYsqq5GTwlhBOV9CurBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47243451926-3n1edeu3cuq5k9spr3os41oe4pr9o3bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47243451926:android:87a818dcb5f3780b021f37",
+        "android_client_info": {
+          "package_name": "com.example.phoneverify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47243451926-mv2t718cbvq902emd31b359lpnkhlin4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phoneverify",
+            "certificate_hash": "bf054273c5e7f870f8683820eaf71a4f9ddbc074"
+          }
+        },
+        {
+          "client_id": "47243451926-1q3umi3c33qk3vino93q8kvnie275hjc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phoneverify",
+            "certificate_hash": "4f4459938671b9fe668fcbb6e54e69ecf882a717"
+          }
+        },
         {
           "client_id": "47243451926-3n1edeu3cuq5k9spr3os41oe4pr9o3bc.apps.googleusercontent.com",
           "client_type": 3

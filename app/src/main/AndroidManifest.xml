@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowOrders"></activity>
+        <activity android:name=".ShopNameProfile"></activity>
+        <activity android:name=".VerifyPhone" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".ShowOrders" />
         <activity android:name=".OrderRequestNotification" />
         <activity android:name=".UpdateLocation" />
         <activity android:name=".Profile" />

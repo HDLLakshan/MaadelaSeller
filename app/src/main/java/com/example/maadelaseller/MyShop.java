@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +49,7 @@ public class MyShop extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         requestWindowFeature( Window.FEATURE_NO_TITLE );
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         setContentView( R.layout.activity_my_shop );
 
         Date c = Calendar.getInstance().getTime();
@@ -75,8 +78,7 @@ public class MyShop extends Activity {
 
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        System.out.println("dfsfsd");
-                      //  Toast.makeText(getApplicationContext(),fishlist.get( i ).getFishname(),Toast.LENGTH_LONG ).show();
+
                         DialogBox(i);
 
                     }
@@ -91,10 +93,6 @@ public class MyShop extends Activity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
     @Override
     public void onBackPressed() {
@@ -130,8 +128,10 @@ public class MyShop extends Activity {
                 } ).setNegativeButton( "Update Rate", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(input.getText().toString().equals( "" ))
-                    Toast.makeText( getApplicationContext(), "Please Enter New Rate", Toast.LENGTH_SHORT ).show();
+                if(input.getText().toString().equals( "" )) {
+                  Toast t = Toast.makeText( getApplicationContext(), "Please Enter New Rate", Toast.LENGTH_SHORT );
+                  designtoast( t );
+                }
                 else {
                     update( j, Double.parseDouble( input.getText().toString().trim() ) );
                     dialogInterface.dismiss();
@@ -150,7 +150,6 @@ public class MyShop extends Activity {
     public void update(final int j, final double d){
 
             final String m = fishlist.get( j ).getDate();
-            System.out.println( fishlist.get( j ).getId() + "ppppppppppppppp" );
             DatabaseReference upref = FirebaseDatabase.getInstance().getReference().child( "DailySelling" );
             upref.addListenerForSingleValueEvent( new ValueEventListener() {
                 @Override
@@ -161,10 +160,12 @@ public class MyShop extends Activity {
 
                             dbref = FirebaseDatabase.getInstance().getReference().child( "DailySelling" ).child( fishlist.get( j ).getDate() ).child( fishlist.get( j ).getShopName() ).child( fishlist.get( j ).getId() );
                             dbref.setValue( fishlist.get( j ) );
-                            Toast.makeText( getApplicationContext(), "Update Sucessfull", Toast.LENGTH_SHORT ).show();
+                            Toast t = Toast.makeText( getApplicationContext(), "Update Sucessfull", Toast.LENGTH_SHORT );
+                            designtoast( t );
 
                         } catch (NumberFormatException e) {
-                            Toast.makeText( getApplicationContext(), "Update Unsucesssfull", Toast.LENGTH_SHORT ).show();
+                            Toast t =Toast.makeText( getApplicationContext(), "Update Unsucesssfull", Toast.LENGTH_SHORT );
+                            designtoast( t );
                         }
                     }
                 }
@@ -188,10 +189,13 @@ public class MyShop extends Activity {
                     dbref=FirebaseDatabase.getInstance().getReference().child("DailySelling").child(fishlist.get( i ).getDate()).child(fishlist.get( i ).getShopName()).child( fishlist.get( i ).getId());
                     dbref.removeValue();
                     //clearcontrol();
-                    Toast.makeText(getApplicationContext(), "DeleteSucessfull",Toast.LENGTH_SHORT).show();
+                    Toast t = Toast.makeText(getApplicationContext(), "Delete Sucessfull",Toast.LENGTH_SHORT);
+                    designtoast( t );
 
-                }else
-                    Toast.makeText(getApplicationContext(), "Delete Un Sucessfull",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast t = Toast.makeText( getApplicationContext(), "Delete Unsucessfull", Toast.LENGTH_SHORT );
+                    designtoast( t );
+                }
             }
 
             @Override
@@ -220,7 +224,8 @@ public class MyShop extends Activity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 dbref=FirebaseDatabase.getInstance().getReference().child("DailySelling").child( DateShopOpend ).child( shopname );
                                 dbref.removeValue();
-                                Toast.makeText(getApplicationContext(), "Shop Close Sucessfully",Toast.LENGTH_SHORT).show();
+                               Toast t = Toast.makeText(getApplicationContext(), "Shop Close Sucessfully",Toast.LENGTH_SHORT);
+                               designtoast( t );
 
 
                             }
@@ -243,9 +248,9 @@ public class MyShop extends Activity {
         alertDialog.setCanceledOnTouchOutside( true );
         alertDialog.show();
         Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        nbutton.setTextColor(Color.GREEN);
+        nbutton.setTextColor(Color.BLACK);
         Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        pbutton.setTextColor( Color.RED);
+        pbutton.setTextColor( Color.BLACK);
 
 
 
@@ -256,6 +261,19 @@ public class MyShop extends Activity {
     public void viewCustomerOrders(View view){
         Intent intent = new Intent(MyShop.this,ShowOrders.class );
         startActivity( intent );
+    }
+
+    public void designtoast(Toast toast){
+        toast.setGravity( Gravity.BOTTOM, 0, 0);
+        View view = toast.getView();
+        view.setBackgroundColor(Color.BLACK);
+        TextView text = (TextView) view.findViewById(android.R.id.message);
+
+        //Shadow of the Of the Text Color
+        text.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+        text.setTextColor(Color.WHITE);
+        text.setTextSize(16);
+        toast.show();
     }
 
 }
