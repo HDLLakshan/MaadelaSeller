@@ -77,7 +77,7 @@ public class Profile extends AppCompatActivity implements OnMapReadyCallback {
         startActivity(intent1);
     }
     public void Delete(View view){
-        Intent intent1 = new Intent(Profile.this,Lgin.class);
+        Intent intent1 = new Intent(Profile.this,setLocation  .class);
         intent1.putExtra("ID", ID);
         startActivity(intent1);
 

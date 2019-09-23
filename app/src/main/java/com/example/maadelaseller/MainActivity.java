@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-                                SellerUser s = userSnapshot.getValue(SellerUser.class);
+                                final SellerUser s = userSnapshot.getValue(SellerUser.class);
 
                                 if(s.getPhonenum().equals(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())){
 
@@ -57,10 +57,30 @@ public class MainActivity extends Activity {
                                     editor.putString( "username", s.getShopname() );
                                     editor.commit();
 
-                                    Intent intent = new Intent(MainActivity.this, SellingFishItem.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
+                                    DatabaseReference locref = FirebaseDatabase.getInstance().getReference().child( "location" );
+                                    locref.addListenerForSingleValueEvent( new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if(dataSnapshot.hasChild( s.getShopname() )){
+                                                Intent intent = new Intent(MainActivity.this, SellingFishItem.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
+                                                finish();
+                                            }else {
+                                                Intent intent = new Intent(MainActivity.this, setLocation.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    } );
+
+
                                 }
                                 else
                                     System.out.println( "eeeeeeeeerrrrrrrrrrrooooooo" );
