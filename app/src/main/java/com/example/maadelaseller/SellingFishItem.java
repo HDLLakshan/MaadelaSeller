@@ -169,6 +169,11 @@ public class SellingFishItem extends Activity {
         startActivity(intent);
     }
 
+    public void viewCustomerOrders(View view){
+        Intent intent = new Intent(SellingFishItem.this,ShowOrders.class );
+        startActivity( intent );
+    }
+
     public void designtoast(Toast toast) {
         toast.setGravity( Gravity.BOTTOM, 0, 0);
         View view = toast.getView();

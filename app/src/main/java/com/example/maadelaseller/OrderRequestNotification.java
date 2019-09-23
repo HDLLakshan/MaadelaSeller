@@ -43,7 +43,6 @@ public class OrderRequestNotification extends Activity {
         SharedPreferences preferences = getSharedPreferences( "shopname",MODE_PRIVATE );
         ooname = preferences.getString( "username","" );
 
-        sellcontact = "0782345674";
 
         oodatabaseOrder.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,80 +67,7 @@ public class OrderRequestNotification extends Activity {
             }
         });
     }
-  /*  public void ConfirmBox(int i){
 
-        final int j = i;
-        if(orderrequestl.get( i ).getStatus().equals( "Pending" )) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder( this );
-            builder.setTitle( "Confirm Request" );
-
-            builder.setCancelable( false );
-            builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    updateAsConfim( j );
-                    recreate();
-                }
-            } ).setNegativeButton( "No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    updateAsReject( j );
-                    dialogInterface.dismiss();
-
-                }
-            } );
-            AlertDialog alertDialog = builder.create();
-            alertDialog.setCanceledOnTouchOutside( true );
-            alertDialog.show();
-            Button nbutton = alertDialog.getButton( DialogInterface.BUTTON_NEGATIVE );
-            nbutton.setBackgroundColor( Color.GREEN );
-            Button pbutton = alertDialog.getButton( DialogInterface.BUTTON_POSITIVE );
-            pbutton.setBackgroundColor( Color.RED );
-        }
-    }
-
-    public void updateAsConfim(final int i){
-
-        DatabaseReference uprefs = FirebaseDatabase.getInstance().getReference().child("OrderClass");
-        uprefs.addListenerForSingleValueEvent( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(customersname));
-
-                orderrequestl.get( i ).setStatus( "Confirmed" );
-                odbr = FirebaseDatabase.getInstance().getReference().child("OrderClass").child( orderrequestl.get( i ).getId() );
-                odbr.setValue(orderrequestl.get( i ));
-                Toast.makeText(getApplicationContext(), "Update Succesfull As Confirmed",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        } );
-
-    }
-
-    public void updateAsReject(final int i){
-        DatabaseReference uprefs = FirebaseDatabase.getInstance().getReference().child("OrderClass");
-        uprefs.addListenerForSingleValueEvent( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(customersname));
-                orderrequestl.get( i ).setStatus( "Reject" );
-                odbr = FirebaseDatabase.getInstance().getReference().child("OrderClass").child( orderrequestl.get( i ).getId() );
-                odbr.setValue(orderrequestl.get( i ));
-                Toast.makeText(getApplicationContext(), "Update Sucessfull As Reject",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        } );
-
-    }*/
 
 }
 

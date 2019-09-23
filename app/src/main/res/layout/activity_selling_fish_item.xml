@@ -100,7 +100,7 @@
         android:layout_width="60dp"
         android:layout_height="53dp"
         android:src="@drawable/bells"
-        android:background="@null"
+        android:onClick="viewCustomerOrders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -110,9 +110,9 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="37dp"
-        android:layout_height="33dp"
-        android:background="?android:selectableItemBackground"
+        android:layout_width="48dp"
+        android:layout_height="41dp"
+        android:background="@color/white"
         android:onClick="gotoprofile"
         android:scaleType="fitXY"
         android:src="@drawable/seticn"
