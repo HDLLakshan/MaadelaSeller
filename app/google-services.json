@@ -60,6 +60,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "47243451926-0hev8e0b1ddqd275ua3qss2phpri5i6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maadelaseller",
+            "certificate_hash": "4f78c6e9d96349db52f4aa7b48c1eb8267905ed6"
+          }
+        },
+        {
           "client_id": "47243451926-j21iuf2i6331mci0dcdek5n10c0n796r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
