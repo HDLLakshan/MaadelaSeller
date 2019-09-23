@@ -60,6 +60,7 @@
             android:layout_weight="2"
             android:digits="0123456789"
             android:hint="Enter your number"
+            android:inputType="phone"
             android:maxLength="10" />
 
     </LinearLayout>
@@ -70,9 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:theme="@style/AppTheme.Button"
+        android:textColor="@color/colorPrimary"
         android:text="Continue"
-        android:textAllCaps="false"
-        android:textColor="#ffffff" />
+        android:textAllCaps="false" />
 
 </RelativeLayout>

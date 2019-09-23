@@ -23,12 +23,33 @@
         android:hint="Shop Name"
         android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Shop Address"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/accno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Bank Account Number"
+        android:digits="0123456789"
+        android:inputType="phone" />
+
 
     <Button
         android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:theme="@style/AppTheme.Button"
+        android:textColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:background="@color/colorAccent"
         android:text="NEXT" />
 
 </LinearLayout>
