@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bci1"
     tools:context=".SellingFishItem">
 
     <AutoCompleteTextView
@@ -113,7 +114,7 @@
         android:background="@color/white"
         android:onClick="gotoprofile"
         android:scaleType="fitXY"
-        android:src="@drawable/lc"
+        android:src="@drawable/locset2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.906"

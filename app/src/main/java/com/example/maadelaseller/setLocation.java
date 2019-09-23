@@ -58,20 +58,23 @@ public class setLocation extends AppCompatActivity implements OnMapReadyCallback
 
     public void saveloc(View view) {
         dbref = FirebaseDatabase.getInstance().getReference().child("location");
+        if(set.latitude == 0 || set.longitude == 0){
+            Toast.makeText( getApplicationContext(), "Please set a location", Toast.LENGTH_SHORT ).show();
+        }
+        else {
+            location.setLan( set.latitude );
+            location.setLon( set.longitude );
+            location.setName( shopname );
 
-        location.setID("003");
-        location.setLan(set.latitude);
-        location.setLon(set.longitude);
-        location.setName(shopname);
-
-        dbref.child(shopname).setValue(location);
-        Toast.makeText(getApplicationContext(), "Data Save Succesfull",Toast.LENGTH_SHORT).show();
+            dbref.child( shopname ).setValue( location );
+            Toast.makeText( getApplicationContext(), "Data Save Succesfull", Toast.LENGTH_SHORT ).show();
 
 
-       // Intent intent = new Intent(this, Profile.class);
-        Intent intent = new Intent( this, SellingFishItem.class );
-        intent.putExtra("ID", location.getID());
-        startActivity(intent);
+            // Intent intent = new Intent(this, Profile.class);
+            Intent intent = new Intent( this, SellingFishItem.class );
+            intent.putExtra( "ID", location.getID() );
+            startActivity( intent );
+        }
     }
 
     public void showall(View view){

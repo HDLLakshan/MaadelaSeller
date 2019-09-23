@@ -71,7 +71,6 @@ public class UpdateLocation extends AppCompatActivity implements OnMapReadyCallb
     public void saveloc(View view) {
         dbref = FirebaseDatabase.getInstance().getReference().child("location");
 
-        location.setID("003");
         location.setLan(set.latitude);
         location.setLon(set.longitude);
         location.setName(shopname);

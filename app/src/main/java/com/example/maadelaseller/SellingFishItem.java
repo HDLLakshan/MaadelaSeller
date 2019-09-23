@@ -169,7 +169,7 @@ public class SellingFishItem extends Activity {
         startActivity(intent);
     }
 
-    public void designtoast(Toast toast){
+    public void designtoast(Toast toast) {
         toast.setGravity( Gravity.BOTTOM, 0, 0);
         View view = toast.getView();
         view.setBackgroundColor(Color.BLACK);
