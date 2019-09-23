@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bci1"
     tools:context=".OrderRequestNotification">
 
 
@@ -22,12 +23,14 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="233dp"
-        android:layout_height="48dp"
+        android:layout_width="308dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="Confirmed Orders"
-        android:textSize="24sp"
+        android:textColor="#000000"
+        android:textSize="27sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

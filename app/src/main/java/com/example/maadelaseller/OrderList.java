@@ -37,7 +37,7 @@ public class OrderList extends ArrayAdapter<OrderClass> {
         TextView amount = orderListview.findViewById(R.id.amount);
         TextView date = orderListview.findViewById(R.id.date);
 
-        TextView statuso = orderListview.findViewById(R.id.statusord);
+
         TextView contactt = orderListview.findViewById(R.id.contactc);
 
         OrderClass orderClass = orderList.get(position);
@@ -50,7 +50,6 @@ public class OrderList extends ArrayAdapter<OrderClass> {
         custname.setText("  Customer Name : "+orderClass.getCustomerName());
         amount.setText("  Amount : "+new Double(orderClass.getAmount()).toString()+ "Kg");
         date.setText("  Date Wanted : "+orderClass.getDate());
-        statuso.setText("  Status : "+orderClass.getStatus());
         contactt.setText("  Customer Contact : "+orderClass.getCustomerContact());
 
 
