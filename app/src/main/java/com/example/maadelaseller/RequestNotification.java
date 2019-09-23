@@ -103,7 +103,7 @@ public class RequestNotification extends Activity {
            AlertDialog.Builder builder = new AlertDialog.Builder( this );
            builder.setTitle( "Confirm Request" );
            builder.setMessage( "Fish Name :" + requestsList.get( i ).getFishname() + " \n " + "Amount  :" +
-                   requestsList.get( i ).getAmount() );
+                   requestsList.get( i ).getAmount() +"Kg" );
            builder.setCancelable( false );
            builder.setPositiveButton( "Yes", new DialogInterface.OnClickListener() {
                @Override
