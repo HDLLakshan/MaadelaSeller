@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ShopNameProfile extends AppCompatActivity {
 
         String phonenumber;
-        EditText shopname;
+        EditText shopname, address, accNo;
         Button button_register;
         ProgressBar progressBar;
         private FirebaseAuth firebaseAuth;
@@ -33,6 +33,9 @@ public class ShopNameProfile extends AppCompatActivity {
 
             su = new SellerUser();
             shopname = (EditText)findViewById( R.id.txtt );
+            address = (EditText)findViewById(R.id.add) ;
+            accNo =(EditText)findViewById(R.id.accno);
+
 
             button_register=(Button)findViewById( R.id.button );
 
@@ -51,13 +54,23 @@ public class ShopNameProfile extends AppCompatActivity {
                         su.setId( FirebaseAuth.getInstance().getCurrentUser().toString() );
                         su.setPhonenum( phonenumber );
                         su.setShopname( shopname.getText().toString().trim() );
+                        su.setAddress(address.getText().toString().trim());
+                        su.setAccNo(accNo.getText().toString().trim());
+
 
                         dbref.child( su.getShopname() ).setValue( su );
 
+
                         SharedPreferences preferences = getSharedPreferences( "shopname", MODE_PRIVATE );
+
+
+
+
                         SharedPreferences.Editor editor = preferences.edit();
 
                         editor.putString( "username", su.getShopname() );
+                        editor.putString( "Address", su.getAddress() );
+                        editor.putString( "Accno", su.getAccNo() );
                         editor.commit();
 
                         Intent i = new Intent( ShopNameProfile.this, setLocation.class );

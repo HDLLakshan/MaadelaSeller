@@ -10,7 +10,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/offical"
+        android:background="@drawable/image1"
         android:orientation="horizontal">
 
         <ImageView
@@ -66,20 +66,20 @@
             android:drawablePadding="10dp"
             android:hint="Enter verification code"
             android:inputType="phone"
-            android:maxLength="10" />
+            android:maxLength="6" />
 
         <Button
             android:id="@+id/buttonSignIn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:theme="@style/AppTheme.Button"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextCode"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:background="@color/colorPrimaryDark"
             android:text="Sign In"
-            android:textAllCaps="false"
-            android:textColor="#cdd8f1" />
-
+            android:textAllCaps="false" />
     </RelativeLayout>
 
 </RelativeLayout>
